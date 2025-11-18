@@ -1,0 +1,43 @@
+.logo{
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+}
+
+.logoSection {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.title {
+    margin-top: 10px;
+    color: #000000;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer {
+    border: solid 1px #9A4E15;
+    color: rgb(0, 0, 0);
+    margin-top: 50px;
+}
+
+.footer h5 {
+    color: #9A4E15;
+    margin-bottom: 15px;
+}
+
+.footerLink {
+    color: #060606;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footerLink:hover {
+    color: #9A4E15;
+}
+
+.footer p {
+    margin: 0;
+    color: #ccc;
+}
