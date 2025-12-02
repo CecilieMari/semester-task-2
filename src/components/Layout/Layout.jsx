@@ -8,7 +8,7 @@ function Layout({ children }) {
       <header>
         <Nav />
       </header>
-      <main className="container mt-4">{children}</main>
+      <main>{children}</main>
       <Footer />
     </div>
   );
