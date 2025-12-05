@@ -1,8 +1,22 @@
 import { Navbar, Nav as BootstrapNav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import styles from './Nav.module.css';
+import { isAuthenticated, logoutUser } from '../api/Api';
 
 function Nav() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setIsLoggedIn(isAuthenticated());
+  }, []);
+
+  const handleLogout = () => {
+    logoutUser();
+    setIsLoggedIn(false);
+    window.location.href = '/'; // Redirect to home
+  };
+
   return (
     <>
       <div style={{ height: '15px', backgroundColor: '#9A4E15' }}></div>
@@ -28,6 +42,18 @@ function Nav() {
               <BootstrapNav.Link as={Link} to="/sell" className={styles.navLink}>Sell</BootstrapNav.Link>
               <BootstrapNav.Link as={Link} to="/about" className={styles.navLink}>About</BootstrapNav.Link>
               <BootstrapNav.Link as={Link} to="/contact" className={styles.navLink}>Contact</BootstrapNav.Link>
+              
+              {isLoggedIn ? (
+                <>
+                  <BootstrapNav.Link as={Link} to="/profil" className={styles.navLink}>Profile</BootstrapNav.Link>
+                  <BootstrapNav.Link onClick={handleLogout} className={styles.navLink} style={{ cursor: 'pointer' }}>Logout</BootstrapNav.Link>
+                </>
+              ) : (
+                <>
+                  <BootstrapNav.Link as={Link} to="/login" className={styles.navLink}>Login</BootstrapNav.Link>
+                  <BootstrapNav.Link as={Link} to="/register" className={styles.navLink}>Register</BootstrapNav.Link>
+                </>
+              )}
             </BootstrapNav>
           </Navbar.Collapse>
         </Container>

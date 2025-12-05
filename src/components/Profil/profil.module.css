@@ -1,0 +1,219 @@
+.profilContainer {
+    min-height: 80vh;
+    padding: 40px 20px;
+}
+
+.profileCard {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.profileHeader {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+/* Left side - Avatar */
+.avatarSection {
+    flex-shrink: 0;
+}
+
+.profileImage {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.editButton {
+    width: 100%;
+    background-color: #9A4E15;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.editButton:hover {
+    background-color: #7a3e11;
+}
+
+/* Right side - Info */
+.infoSection {
+    flex: 1;
+}
+
+.userName {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.bioSection {
+    margin-bottom: 30px;
+}
+
+.bioSection h3 {
+    color: #9A4E15;
+    margin-bottom: 10px;
+}
+
+.bioText {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    min-height: 80px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.editBioButton {
+    background-color: transparent;
+    color: #9A4E15;
+    border: 1px solid #9A4E15;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.editBioButton:hover {
+    background-color: #9A4E15;
+    color: white;
+}
+
+.bioForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bioTextarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.bioTextarea:focus {
+    outline: none;
+    border-color: #9A4E15;
+}
+
+.stats {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.statItem {
+    margin: 10px 0;
+    color: #333;
+}
+
+.statItem strong {
+    color: #9A4E15;
+}
+
+/* Forms */
+.editForm {
+    margin-top: 10px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #9A4E15;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.saveButton {
+    background-color: #9A4E15;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.saveButton:hover {
+    background-color: #7a3e11;
+}
+
+.saveButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.cancelButton {
+    background-color: #666;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.cancelButton:hover {
+    background-color: #444;
+}
+
+.error {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .profileHeader {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profileImage {
+        width: 150px;
+        height: 225px;
+    }
+
+    .infoSection {
+        text-align: center;
+    }
+}
