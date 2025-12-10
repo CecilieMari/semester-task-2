@@ -1,6 +1,7 @@
 // Profil component for displaying user profile information and settings
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Profil.module.css';
 import { getCurrentUser } from '../api/Api';
 
@@ -13,6 +14,8 @@ function Profil() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [myListings, setMyListings] = useState([]);
+    const [loadingListings, setLoadingListings] = useState(true);
 
     useEffect(() => {
         const userData = getCurrentUser();
@@ -20,8 +23,26 @@ function Profil() {
             setUser(userData);
             setAvatarUrl(userData.avatar?.url || '');
             setBio(userData.bio || '');
+            fetchMyListings(userData.name);
         }
     }, []);
+
+    const fetchMyListings = async (username) => {
+        try {
+            const response = await fetch(`https://v2.api.noroff.dev/auction/profiles/${username}/listings`);
+            
+            if (!response.ok) {
+                throw new Error('Failed to fetch listings');
+            }
+            
+            const data = await response.json();
+            setMyListings(data.data || []);
+        } catch (err) {
+            console.error('Error fetching listings:', err);
+        } finally {
+            setLoadingListings(false);
+        }
+    };
 
     const handleUpdateAvatar = async (e) => {
         e.preventDefault();
@@ -126,14 +147,8 @@ function Profil() {
                             alt="Profile" 
                             className={styles.profileImage} 
                         />
-                        {!isEditingAvatar ? (
-                            <button 
-                                onClick={() => setIsEditingAvatar(true)} 
-                                className={styles.editButton}
-                            >
-                                Change Picture
-                            </button>
-                        ) : (
+                        
+                        {isEditingAvatar && (
                             <form onSubmit={handleUpdateAvatar} className={styles.editForm}>
                                 <input 
                                     type="url" 
@@ -164,22 +179,13 @@ function Profil() {
 
                     {/* Right side - Name and Bio */}
                     <div className={styles.infoSection}>
-                        <h1 className={styles.userName}>Hi, I`m {user.name}</h1>
+                        <h1 className={styles.userName}>Hi, I'm {user.name}</h1>
                         
                         <div className={styles.bioSection}>
-                            <h3>About Me</h3>
                             {!isEditingBio ? (
-                                <>
-                                    <p className={styles.bioText}>
-                                        {user.bio || 'No bio yet. Click edit to add one!'}
-                                    </p>
-                                    <button 
-                                        onClick={() => setIsEditingBio(true)} 
-                                        className={styles.editBioButton}
-                                    >
-                                        Edit Bio
-                                    </button>
-                                </>
+                                <p className={styles.bioText}>
+                                    {user.bio || 'No bio yet. Click edit to add one!'}
+                                </p>
                             ) : (
                                 <form onSubmit={handleUpdateBio} className={styles.bioForm}>
                                     <textarea 
@@ -217,11 +223,74 @@ function Profil() {
                             <div className={styles.statItem}>
                                 <strong>Credits:</strong> {user.credits || 0}
                             </div>
-                            <div className={styles.statItem}>
-                                <strong>Wins:</strong> {user._count?.wins || 0}
-                            </div>
+                        </div>
+
+                        {/* Action links under stats */}
+                        <div className={styles.actionLinks}>
+                            <Link to="/create-listing" className={styles.actionLink}>
+                                Add New Listing
+                            </Link>
+                            <span className={styles.separator}>|</span>
+                            {!isEditingAvatar && (
+                                <>
+                                    <button 
+                                        onClick={() => setIsEditingAvatar(true)} 
+                                        className={styles.actionLink}
+                                    >
+                                        Change Picture
+                                    </button>
+                                    <span className={styles.separator}>|</span>
+                                </>
+                            )}
+                            {!isEditingBio && (
+                                <button 
+                                    onClick={() => setIsEditingBio(true)} 
+                                    className={styles.actionLink}
+                                >
+                                    Edit Bio
+                                </button>
+                            )}
                         </div>
                     </div>
+                </div>
+
+                {/* My Listings Section */}
+                <div className={styles.listingsSection}>
+                    <h2 className={styles.listingsTitle}>My Listings</h2>
+                    
+                    {loadingListings ? (
+                        <p>Loading your listings...</p>
+                    ) : myListings.length === 0 ? (
+                        <p className={styles.noListings}>
+                            You haven't created any listings yet. 
+                            <Link to="/create-listing" className={styles.createLink}> Create your first listing!</Link>
+                        </p>
+                    ) : (
+                        <div className={styles.listingsGrid}>
+                            {myListings.map((listing) => (
+                                <div key={listing.id} className={styles.listingCard}>
+                                    <img 
+                                        src={listing.media?.[0]?.url || 'https://via.placeholder.com/300x200'} 
+                                        alt={listing.title}
+                                        className={styles.listingImage}
+                                    />
+                                    <div className={styles.listingInfo}>
+                                        <h3 className={styles.listingTitle}>{listing.title}</h3>
+                                        <p className={styles.listingDescription}>
+                                            {listing.description?.substring(0, 80)}...
+                                        </p>
+                                        <div className={styles.listingStats}>
+                                            <span>Bids: {listing._count?.bids || 0}</span>
+                                            <span>Ends: {new Date(listing.endsAt).toLocaleDateString()}</span>
+                                        </div>
+                                        <Link to={`/auction/${listing.id}`} className={styles.viewButton}>
+                                            View Listing
+                                        </Link>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
