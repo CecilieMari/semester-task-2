@@ -38,7 +38,8 @@ function Register() {
     return (
         <div className={styles.loginContainer}>
             <div className={styles.loginBox}>
-                <h1>Register</h1>
+                <h1>New profile</h1>
+                <p> Fill in the information below to start your auction journey</p>
                 {error && <div className={styles.error}>{error}</div>}
                 <form className={styles.loginForm} onSubmit={handleSubmit}>
                     <div className={styles.formGroup}>

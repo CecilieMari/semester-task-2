@@ -30,10 +30,11 @@ function Login() {
         <div className={styles.loginContainer}>
             <div className={styles.loginBox}>
                 <h1>Login</h1>
+                <p>Welcome back! Please login to your account.</p>
                 {error && <div className={styles.error}>{error}</div>}
                 <form className={styles.loginForm} onSubmit={handleSubmit}>
                     <div className={styles.formGroup}>
-                        <label htmlFor="email">Email:</label>
+                        <label htmlFor="email">Email address</label>
                         <input 
                             type="email" 
                             id="email" 
@@ -44,7 +45,7 @@ function Login() {
                         />
                     </div>
                     <div className={styles.formGroup}>
-                        <label htmlFor="password">Password:</label>
+                        <label htmlFor="password">Password</label>
                         <input 
                             type="password" 
                             id="password" 
