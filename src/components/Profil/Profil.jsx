@@ -4,7 +4,7 @@ import styles from './Profil.module.css';
 import { getCurrentUser, fetchUserProfile } from '../api/Api';
 
 function Profil() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null);               
     const [avatarUrl, setAvatarUrl] = useState('');
     const [bio, setBio] = useState('');
     const [isEditingAvatar, setIsEditingAvatar] = useState(false);
@@ -298,9 +298,15 @@ function Profil() {
                                             <span>Bids: {listing._count?.bids || 0}</span>
                                             <span>Ends: {new Date(listing.endsAt).toLocaleDateString()}</span>
                                         </div>
-                                        <Link to={`/auction/${listing.id}`} className={styles.viewButton}>
-                                            View Listing
-                                        </Link>
+                                        <div className={styles.listingActions}>
+                                            <Link to={`/auction/${listing.id}`} className={styles.viewButton}>
+                                                View Listing
+                                            </Link>
+                                            <span className={styles.separator}>|</span>
+                                            <Link to={`/edit-listing/${listing.id}`} className={styles.editButton}>
+                                                Edit
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             ))}

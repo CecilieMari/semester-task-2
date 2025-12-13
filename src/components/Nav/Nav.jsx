@@ -67,10 +67,8 @@ function Nav() {
           <Navbar.Toggle aria-controls="navbarNav" />
           <Navbar.Collapse id="navbarNav" className="justify-content-center">
             <BootstrapNav className="w-100 justify-content-around">
-              <BootstrapNav.Link as={Link} to="/" className={styles.navLink}>Buy</BootstrapNav.Link>
+              <BootstrapNav.Link as={Link} to="/" className={styles.navLink}>Home</BootstrapNav.Link>
               <BootstrapNav.Link as={Link} to="/all-listings" className={styles.navLink}>All Listings</BootstrapNav.Link>
-              <BootstrapNav.Link as={Link} to="/about" className={styles.navLink}>About</BootstrapNav.Link>
-              <BootstrapNav.Link as={Link} to="/contact" className={styles.navLink}>Contact</BootstrapNav.Link>
               
               {isLoggedIn ? (
                 <>
