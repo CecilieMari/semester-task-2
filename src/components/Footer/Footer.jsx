@@ -23,8 +23,8 @@ function Footer() {
                         <h5>Quick Links</h5>
                         <ul className="list-unstyled">
                             <li><Link to="/" className={Styles.footerLink}>Home</Link></li>
-                            <li><Link to="/about" className={Styles.footerLink}>About</Link></li>
-                            <li><Link to="/contact" className={Styles.footerLink}>Contact</Link></li>
+                            <li><Link to="/register" className={Styles.footerLink}>Register</Link></li>
+                            <li><Link to="/login" className={Styles.footerLink}>Log in</Link></li>
                         </ul>
                     </div>
                     <div className="col-md-4">

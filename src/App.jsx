@@ -5,6 +5,7 @@ import Login from './components/Auth/Login.jsx';
 import Register from './components/Auth/Register.jsx';
 import Profil from './components/Profil/Profil.jsx';
 import NewListing from './components/NewListing/NewListing.jsx';
+import EditListing from './components/NewListing/EditListing.jsx';
 import SingelListing from './components/Listing/SingelListing.jsx';
 import AllListing from './components/Listing/AllListing.jsx';
 import Searc from './components/Searc/Searc.jsx';
@@ -19,6 +20,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/profil" element={<Profil />} />
           <Route path="/new-listing" element={<NewListing />} />
+          <Route path="/edit-listing/:id" element={<EditListing />} />
           <Route path="/auction/:id" element={<SingelListing />} />
           <Route path="/all-listings" element={<AllListing />} />
           <Route path="/search" element={<Searc />} />
