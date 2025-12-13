@@ -1,0 +1,136 @@
+.listingsContainer {
+    min-height: 80vh;
+    padding: 40px 20px;
+}
+
+.listingsTitle {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #333;
+    font-weight: 200;
+}
+
+.listingsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.listingCard {
+    background: white;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.listingCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.listingImage {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.noImage {
+    width: 100%;
+    height: 300px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 16px;
+}
+
+.listingContent {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.listingTitle {
+    font-size: 20px;
+    color: #333;
+    font-weight: 300;
+    margin: 0;
+}
+
+.listingBids {
+    color: #999;
+    font-size: 14px;
+}
+.listingPrice {
+    color: #9A4E15;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.viewButton {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 8px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 300;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: fit-content;
+    align-self: flex-start;
+}
+
+.viewButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #9A4E15;
+    transition: left 0.4s ease;
+    z-index: -1;
+}
+
+.viewButton:hover {
+    color: white;
+    border-color: #9A4E15;
+}
+
+.viewButton:hover::before {
+    left: 0;
+}
+
+.loading,
+.error,
+.noListings {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 18px;
+    color: #666;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .listingsGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .listingsTitle {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .listingImage {
+        height: 200px;
+    }
+}

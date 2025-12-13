@@ -1,9 +1,7 @@
-// Profil component for displaying user profile information and settings
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Profil.module.css';
-import { getCurrentUser } from '../api/Api';
+import { getCurrentUser, fetchUserProfile } from '../api/Api';
 
 function Profil() {
     const [user, setUser] = useState(null);
@@ -23,13 +21,30 @@ function Profil() {
             setUser(userData);
             setAvatarUrl(userData.avatar?.url || '');
             setBio(userData.bio || '');
-            fetchMyListings(userData.name);
+            // Fetch fresh profile data with credits
+            fetchUserProfile(userData.name).then(freshData => {
+                setUser(freshData);
+            }).catch(err => console.error('Error fetching fresh profile:', err));
         }
     }, []);
 
+    useEffect(() => {
+        if (user) {
+            fetchMyListings(user.name);
+        }
+    }, [user]); // Re-fetch when user changes or component mounts
+
     const fetchMyListings = async (username) => {
         try {
-            const response = await fetch(`https://v2.api.noroff.dev/auction/profiles/${username}/listings`);
+            const token = localStorage.getItem('accessToken');
+            const apiKey = localStorage.getItem('apiKey');
+            
+            const response = await fetch(`https://v2.api.noroff.dev/auction/profiles/${username}/listings`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'X-Noroff-API-Key': apiKey,
+                }
+            });
             
             if (!response.ok) {
                 throw new Error('Failed to fetch listings');
@@ -227,7 +242,7 @@ function Profil() {
 
                         {/* Action links under stats */}
                         <div className={styles.actionLinks}>
-                            <Link to="/create-listing" className={styles.actionLink}>
+                            <Link to="/new-listing" className={styles.actionLink}>
                                 Add New Listing
                             </Link>
                             <span className={styles.separator}>|</span>
@@ -263,7 +278,7 @@ function Profil() {
                     ) : myListings.length === 0 ? (
                         <p className={styles.noListings}>
                             You haven't created any listings yet. 
-                            <Link to="/create-listing" className={styles.createLink}> Create your first listing!</Link>
+                            <Link to="/new-listing" className={styles.createLink}> Create your first listing!</Link>
                         </p>
                     ) : (
                         <div className={styles.listingsGrid}>

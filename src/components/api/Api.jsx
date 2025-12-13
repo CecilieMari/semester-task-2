@@ -106,10 +106,40 @@ export function isAuthenticated() {
   return !!localStorage.getItem('accessToken');
 }
 
+// Fetch user profile with credits
+export async function fetchUserProfile(username) {
+  try {
+    const token = localStorage.getItem('accessToken');
+    const apiKey = localStorage.getItem('apiKey');
+
+    const response = await fetch(`${API_AUCTION}/profiles/${username}?_listings=true`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'X-Noroff-API-Key': apiKey,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    // Update localStorage with fresh user data including credits
+    const currentUser = getCurrentUser();
+    const updatedUser = { ...currentUser, ...result.data };
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+    
+    return result.data;
+  } catch (error) {
+    console.error('Error fetching user profile:', error);
+    throw error;
+  }
+}
+
 // Fetch auction listings
 export async function fetchAuctionListings() {
   try {
-    const response = await fetch(`${API_AUCTION}/listings`);
+    const response = await fetch(`${API_AUCTION}/listings?_bids=true`);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

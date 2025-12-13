@@ -1,0 +1,147 @@
+.newListingContainer {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.formCard {
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.formCard h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 300;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+}
+
+.formGroup input,
+.formGroup textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: inherit;
+    background-color: #ffffff;
+    color: #333;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+    outline: none;
+    border-color: #9A4E15;
+}
+
+.formGroup textarea {
+    resize: vertical;
+}
+
+.mediaUrlGroup {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.mediaUrlGroup input {
+    flex: 1;
+}
+
+.removeButton {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.removeButton:hover {
+    background-color: #c82333;
+}
+
+.addButton {
+    background-color: transparent;
+    color: #9A4E15;
+    border: 1px solid #9A4E15;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.addButton:hover {
+    background-color: #9A4E15;
+    color: white;
+}
+
+.submitButton {
+    background-color: #9A4E15;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.submitButton:hover {
+    background-color: #7a3e11;
+}
+
+.submitButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.error {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .formCard {
+        padding: 30px 20px;
+    }
+
+    .mediaUrlGroup {
+        flex-direction: column;
+    }
+
+    .removeButton {
+        width: 100%;
+    }
+}
