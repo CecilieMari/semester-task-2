@@ -7,6 +7,7 @@ import Profil from './components/Profil/Profil.jsx';
 import NewListing from './components/NewListing/NewListing.jsx';
 import SingelListing from './components/Listing/SingelListing.jsx';
 import AllListing from './components/Listing/AllListing.jsx';
+import Searc from './components/Searc/Searc.jsx';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/new-listing" element={<NewListing />} />
           <Route path="/auction/:id" element={<SingelListing />} />
           <Route path="/all-listings" element={<AllListing />} />
+          <Route path="/search" element={<Searc />} />
         </Routes>
       </Layout>
     </Router>
