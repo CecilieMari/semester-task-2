@@ -169,3 +169,20 @@ export async function fetchAuctionById(id) {
     throw error;
   }
 }
+
+// Search listings
+export async function searchListings(query) {
+  try {
+    const response = await fetch(`${API_AUCTION}/listings/search?q=${encodeURIComponent(query)}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const result = await response.json();
+    return result.data;
+  } catch (error) {
+    console.error('Error searching listings:', error);
+    throw error;
+  }
+}

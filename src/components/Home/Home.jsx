@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./home.module.css";
-import { fetchAuctionListings } from "../api/Api";
+import { fetchAuctionListings, getCurrentUser } from "../api/Api";
 
 function Home() {
     const [listings, setListings] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const user = getCurrentUser();
 
     useEffect(() => {
         async function loadListings() {
             try {
                 const data = await fetchAuctionListings();
-                console.log('API Response:', data); // Logger hele responsen
-                console.log('Listings:', data.data || data); // Logger kun listings
+                console.log('API Response:', data);
+                console.log('Listings:', data.data || data);
                 setListings(data.data || data);
             } catch (err) {
-                console.error('Error loading listings:', err); // Logger feil
+                console.error('Error loading listings:', err);
                 setError(err.message);
             } finally {
                 setLoading(false);
@@ -26,7 +27,7 @@ function Home() {
         loadListings();
     }, []);
 
-    console.log('Current listings state:', listings); // Logger listings state
+    console.log('Current listings state:', listings);
 
     return (
         <>
@@ -36,8 +37,11 @@ function Home() {
                         <div className={styles.textCol + " col-md-6 order-md-1 order-2"}>
                             <h1 className="mb-4">Start your auction now</h1>
                             <p className="lead mb-4">Discover, sell, and win — simply and safely.</p>
-                            <Link to="/auction" className={styles.buttonCol + " btn btn-lg"}>
-                                Start your auction now
+                            <Link 
+                                to={user ? "/profil" : "/register"} 
+                                className={styles.buttonCol + " btn btn-lg"}
+                            >
+                                {user ? "Go to My Profile" : "Create Account"}
                             </Link>
                         </div>
                         <div className={styles.imageCol + " col-md-6 text-center order-md-2 order-1 mb-4 mb-md-0"}>

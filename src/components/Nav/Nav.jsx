@@ -26,12 +26,17 @@ function Nav() {
     }
   };
 
+  const handleSearchClick = () => {
+    navigate('/search');
+  };
+
+
   return (
     <>
       <div style={{ height: '15px', backgroundColor: '#9A4E15' }}></div>
       <div className={styles.logoSection}>
         {/* Left side - Search */}
-        <div className={styles.leftSection}>
+        <div className={styles.leftSection} onClick={handleSearchClick}>
           <i className="bi bi-search" style={{ fontSize: '24px', marginRight: '8px' }}></i>
           <span className={styles.sectionText}>Search</span>
         </div>
