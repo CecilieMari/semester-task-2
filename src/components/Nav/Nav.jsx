@@ -1,7 +1,7 @@
 import { Navbar, Nav as BootstrapNav, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import styles from './Nav.module.css';
+import styles from './nav.module.css';
 import { isAuthenticated, logoutUser } from '../api/Api';
 
 function Nav() {
