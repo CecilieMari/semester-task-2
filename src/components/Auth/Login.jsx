@@ -1,4 +1,3 @@
-// Login component for user authentication
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from './login.module.css';
@@ -31,7 +30,7 @@ function Login() {
 
             const data = await response.json();
             
-            // Lagre tokens og brukerinfo
+  
             localStorage.setItem('accessToken', data.data.accessToken);
             localStorage.setItem('userName', data.data.name);
             localStorage.setItem('userEmail', data.data.email);
@@ -43,7 +42,7 @@ function Login() {
                 localStorage.setItem('userAvatar', data.data.avatar.url);
             }
 
-            // Opprett API-nøkkel
+          
             const apiKeyResponse = await fetch('https://v2.api.noroff.dev/auth/create-api-key', {
                 method: 'POST',
                 headers: {
@@ -58,17 +57,11 @@ function Login() {
                 localStorage.setItem('apiKey', apiKeyData.data.key);
             }
 
-            // Vent litt for å sikre at localStorage er oppdatert
-            await new Promise(resolve => setTimeout(resolve, 100));
-
-            // Trigger en storage event for å oppdatere Nav
+         
             window.dispatchEvent(new Event('storage'));
             
-            // Naviger til forsiden
+
             navigate('/');
-            
-            // Force reload for å sikre at alt oppdateres
-            window.location.reload();
 
         } catch (err) {
             setError(err.message);
