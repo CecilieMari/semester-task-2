@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import styles from "./newlisting.module.css"; // Bruk samme CSS som NewListing
+import styles from './newlisting.module.css';
 import { getCurrentUser } from "../api/Api";
 import { fetchListingById } from "../api/Api.listing";
 

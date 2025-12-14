@@ -1,16 +1,54 @@
-# React + Vite
+# Auction Website – Semester Project 2
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
+This project is a front-end auction website built as part of **Semester Project 2** at Noroff.
+The application allows users to register, log in, create listings, and place bids using credits.
+All data is handled via the official **Noroff Auction API**.
 
-Currently, two official plugins are available:
+## Description
+- Users with a `stud.noroff.no` email can register
+- Registered users can log in and log out
+- Registered users can update their avatar
+- New registered user receive 1000 credits to start bidding
+- Registered users can view their total credit balance
+- Registered users can create listings with title, description, deadline, and media
+- Registered users can place bids on other users’ listings
+- Registered users can view bids on a listing
+- Unregistered users can search and browse listings
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Built With
+- [React](https://reactjs.org/) - JavaScript library for building user interfaces
+- [React Router](https://reactrouter.com/) - Routing library for React
+- [Bootstrap](https://getbootstrap.com/) - CSS framework
+- [Bootstrap Icons](https://icons.getbootstrap.com/) - Icon library
+- [Vite](https://vitejs.dev/) - Build tool and development server
+- [Noroff API v2](https://docs.noroff.dev/docs/v2) - Backend API
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Installing
 
-## Expanding the ESLint configuration
+1. Clone the repo:
+```bash
+git clone https://github.com/CecilieMari/semester-task-2.git
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. Navigate to project directory:
+```bash
+cd semester-task-2
+```
+
+3. Install dependencies:
+```bash
+npm install
+```
+
+### Running
+
+To run the app in development mode:
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
