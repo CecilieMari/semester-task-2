@@ -49,7 +49,7 @@ function Login() {
                 localStorage.setItem('apiKey', apiKeyData.data.key);
             }
 
-            // Force reload for å oppdatere Nav
+            
             window.location.href = '/';
 
         } catch (err) {
