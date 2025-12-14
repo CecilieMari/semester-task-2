@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchListingById, placeBid } from '../api/Api.listing.jsx';
 import { getCurrentUser } from '../api/Api';
-import styles from './SingelListing.module.css';
+import styles from './singellisting.module.css';
 
 function SingelListing() {
     const { id } = useParams();
