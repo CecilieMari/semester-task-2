@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Profil.module.css';
+import styles from './profil.module.css'; 
 import { getCurrentUser, fetchUserProfile } from '../api/Api';
 
 function Profil() {
