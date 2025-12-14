@@ -30,11 +30,11 @@ function Login() {
 
             const data = await response.json();
             
-            // Lagre alt i localStorage
+            
             localStorage.setItem('accessToken', data.data.accessToken);
             localStorage.setItem('user', JSON.stringify(data.data));
             
-            // Opprett API-nøkkel
+            
             const apiKeyResponse = await fetch('https://v2.api.noroff.dev/auth/create-api-key', {
                 method: 'POST',
                 headers: {
