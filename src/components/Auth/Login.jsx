@@ -30,19 +30,11 @@ function Login() {
 
             const data = await response.json();
             
-  
+            // Lagre alt i localStorage
             localStorage.setItem('accessToken', data.data.accessToken);
-            localStorage.setItem('userName', data.data.name);
-            localStorage.setItem('userEmail', data.data.email);
+            localStorage.setItem('user', JSON.stringify(data.data));
             
-            if (data.data.bio) {
-                localStorage.setItem('userBio', data.data.bio);
-            }
-            if (data.data.avatar?.url) {
-                localStorage.setItem('userAvatar', data.data.avatar.url);
-            }
-
-          
+            // Opprett API-nøkkel
             const apiKeyResponse = await fetch('https://v2.api.noroff.dev/auth/create-api-key', {
                 method: 'POST',
                 headers: {
@@ -57,11 +49,8 @@ function Login() {
                 localStorage.setItem('apiKey', apiKeyData.data.key);
             }
 
-         
-            window.dispatchEvent(new Event('storage'));
-            
-
-            navigate('/');
+            // Force reload for å oppdatere Nav
+            window.location.href = '/';
 
         } catch (err) {
             setError(err.message);
