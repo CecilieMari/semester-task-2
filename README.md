@@ -52,3 +52,9 @@ npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+
+## Acknowledgments
+
+Design: Cecilie Mari Monsen
+API: Noroff – Frontend Development
+Project: Semester Project 2
